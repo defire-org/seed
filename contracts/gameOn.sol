@@ -211,6 +211,16 @@ contract DeFIREGameOn is Ownable, ReentrancyGuard {
 
   // -------------------------------------------------------------------------------
 
+  function myEligibility() public view returns (bool) {
+    
+    if(seedPhase() < 3 && flareToken.balanceOf(msg.sender) > 2*10**18) {
+      return true;
+    }
+    if(seedPhase() >2) {
+      return true;
+    }
+
+  }
   function myFLARE() public view returns (uint256) {
     return flareToken.balanceOf(msg.sender);
   }
@@ -275,11 +285,13 @@ contract DeFIREGameOn is Ownable, ReentrancyGuard {
   function withdrawStablesToTreasury() public onlyOwner {
     require(seedPhase() == 0, "Seed Round Not Closed Yet");
     stableToken.safeTransfer(multisigAddress, stableToken.balanceOf(address(this)));
+
   }
 
   function withdrawNativeToTreasury() public payable onlyOwner {
     require(seedPhase() == 0, "Seed Round Not Closed Yet");
     payable(multisigAddress).transfer(address(this).balance);
+
   }
 
   function withdrawUnclaimedToTreasury(IERC20 _token) public onlyOwner {
