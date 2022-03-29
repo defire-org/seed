@@ -129,8 +129,10 @@ contract DeFIREGameOn is Ownable, ReentrancyGuard {
         require(_xFLAREAddress != address(0), "Address cannot be 0x");
         require(_psDFIREAddress != address(0), "Address cannot be 0x");
 
-        require(_minimumStable > 1, "Minimum deposit should be higher than 1");
+        require(_minimumStable > 1 *10**6, "Minimum deposit should be higher than 1");
 
+        minimumStable = _minimumStable * 10 ** 6;
+ 
         stableToken = ERC20(_stableAddress);
         flareToken = ERC20(_xFLAREAddress);
         psDFIREToken = psDFIRE(_psDFIREAddress);
@@ -177,7 +179,7 @@ contract DeFIREGameOn is Ownable, ReentrancyGuard {
     // -------------------------------------------------------------------------------
 
     function myEligibility() public view returns (bool) {
-        if (seedPhase() < 3 && flareToken.balanceOf(msg.sender) > 2 * 10**18) {
+        if (seedPhase() < 3 && flareToken.balanceOf(msg.sender) > 2 ether) {
             return true;
         }
         if (seedPhase() > 2) {
