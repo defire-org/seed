@@ -75,7 +75,7 @@ contract DeFIREGameOn is Ownable, ReentrancyGuard {
     // -------------------------------------------------------------------------------
 
     struct InvestorStats {
-        uint256 depositedNative;
+
         uint256 depositedUSD;
         uint256 psDFIRE;
         string referral;
