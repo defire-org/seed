@@ -99,7 +99,7 @@ contract DeFIREGameOn is Ownable, ReentrancyGuard {
     // -------------------------------------------------------------------------------
 
     uint256 public minimumStable = 100 * 10 ** 6;
-    uint256 public phaseTime = 100;
+    uint256 public phaseTime = 86400;
 
     // ------------------------------------------------------------------------------- events
 
