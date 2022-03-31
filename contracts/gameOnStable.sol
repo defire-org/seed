@@ -172,7 +172,7 @@ contract DeFIREGameOn is Ownable, ReentrancyGuard {
         return 0;
     }
 
-    function amountDepositedStable() public view onlyOwner returns (uint256) {
+    function amountDepositedStable() public view returns (uint256) {
         return stableToken.balanceOf(address(this));
     }
 
